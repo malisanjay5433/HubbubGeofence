@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D9CAAD51E3B09B20081991F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CAAD41E3B09B20081991F /* AppDelegate.swift */; };
+		3D9CAAD71E3B09B20081991F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CAAD61E3B09B20081991F /* ViewController.swift */; };
+		3D9CAADA1E3B09B20081991F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9CAAD81E3B09B20081991F /* Main.storyboard */; };
+		3D9CAADC1E3B09B20081991F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9CAADB1E3B09B20081991F /* Assets.xcassets */; };
+		3D9CAADF1E3B09B20081991F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9CAADD1E3B09B20081991F /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D9CAAD11E3B09B10081991F /* Hubbub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hubbub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D9CAAD41E3B09B20081991F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D9CAAD61E3B09B20081991F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3D9CAAD91E3B09B20081991F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D9CAADB1E3B09B20081991F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D9CAADE1E3B09B20081991F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3D9CAAE01E3B09B20081991F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D9CAACE1E3B09B10081991F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D9CAAC81E3B09B10081991F = {
+			isa = PBXGroup;
+			children = (
+				3D9CAAD31E3B09B20081991F /* Hubbub */,
+				3D9CAAD21E3B09B10081991F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D9CAAD21E3B09B10081991F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D9CAAD11E3B09B10081991F /* Hubbub.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D9CAAD31E3B09B20081991F /* Hubbub */ = {
+			isa = PBXGroup;
+			children = (
+				3D9CAAD41E3B09B20081991F /* AppDelegate.swift */,
+				3D9CAAD61E3B09B20081991F /* ViewController.swift */,
+				3D9CAAD81E3B09B20081991F /* Main.storyboard */,
+				3D9CAADB1E3B09B20081991F /* Assets.xcassets */,
+				3D9CAADD1E3B09B20081991F /* LaunchScreen.storyboard */,
+				3D9CAAE01E3B09B20081991F /* Info.plist */,
+			);
+			path = Hubbub;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D9CAAD01E3B09B10081991F /* Hubbub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D9CAAE31E3B09B20081991F /* Build configuration list for PBXNativeTarget "Hubbub" */;
+			buildPhases = (
+				3D9CAACD1E3B09B10081991F /* Sources */,
+				3D9CAACE1E3B09B10081991F /* Frameworks */,
+				3D9CAACF1E3B09B10081991F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hubbub;
+			productName = Hubbub;
+			productReference = 3D9CAAD11E3B09B10081991F /* Hubbub.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D9CAAC91E3B09B10081991F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Sanjay;
+				TargetAttributes = {
+					3D9CAAD01E3B09B10081991F = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3D9CAACC1E3B09B10081991F /* Build configuration list for PBXProject "Hubbub" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3D9CAAC81E3B09B10081991F;
+			productRefGroup = 3D9CAAD21E3B09B10081991F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D9CAAD01E3B09B10081991F /* Hubbub */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D9CAACF1E3B09B10081991F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9CAADF1E3B09B20081991F /* LaunchScreen.storyboard in Resources */,
+				3D9CAADC1E3B09B20081991F /* Assets.xcassets in Resources */,
+				3D9CAADA1E3B09B20081991F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D9CAACD1E3B09B10081991F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9CAAD71E3B09B20081991F /* ViewController.swift in Sources */,
+				3D9CAAD51E3B09B20081991F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3D9CAAD81E3B09B20081991F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D9CAAD91E3B09B20081991F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3D9CAADD1E3B09B20081991F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D9CAADE1E3B09B20081991F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D9CAAE11E3B09B20081991F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3D9CAAE21E3B09B20081991F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D9CAAE41E3B09B20081991F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hubbub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.theiOSDeveloper.Hubbub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3D9CAAE51E3B09B20081991F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hubbub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.theiOSDeveloper.Hubbub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D9CAACC1E3B09B10081991F /* Build configuration list for PBXProject "Hubbub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9CAAE11E3B09B20081991F /* Debug */,
+				3D9CAAE21E3B09B20081991F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D9CAAE31E3B09B20081991F /* Build configuration list for PBXNativeTarget "Hubbub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9CAAE41E3B09B20081991F /* Debug */,
+				3D9CAAE51E3B09B20081991F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D9CAAC91E3B09B10081991F /* Project object */;
+}
