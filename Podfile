@@ -7,9 +7,7 @@ target 'Hubbub’ do
     
     # Pods for Hubbub
     pod 'SwiftyJSON'
-    pod "KRProgressHUD"
     pod 'GoogleMaps'
-
     post_install do |installer|
         installer.pods_project.targets.each do |target|
             target.build_configurations.each do |config|

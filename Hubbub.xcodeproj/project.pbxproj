@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D6D03BF1E40F3EE00A42174 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D03BE1E40F3EE00A42174 /* Utilities.swift */; };
 		3D9CAAD51E3B09B20081991F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CAAD41E3B09B20081991F /* AppDelegate.swift */; };
 		3D9CAAD71E3B09B20081991F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CAAD61E3B09B20081991F /* ViewController.swift */; };
 		3D9CAADA1E3B09B20081991F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9CAAD81E3B09B20081991F /* Main.storyboard */; };
@@ -22,7 +21,6 @@
 
 /* Begin PBXFileReference section */
 		2B6EAF4CB5B2EB86BCA2EF03 /* Pods-HUB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HUB.release.xcconfig"; path = "Pods/Target Support Files/Pods-HUB/Pods-HUB.release.xcconfig"; sourceTree = "<group>"; };
-		3D6D03BE1E40F3EE00A42174 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3D9CAAD11E3B09B10081991F /* Hubbub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hubbub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9CAAD41E3B09B20081991F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D9CAAD61E3B09B20081991F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				3DE4C6831E43A9560015E815 /* Model */,
 				3DE4C6821E43A1CA0015E815 /* JSONFile */,
 				3D9CAAD41E3B09B20081991F /* AppDelegate.swift */,
-				3D6D03BE1E40F3EE00A42174 /* Utilities.swift */,
 				3D9CAADB1E3B09B20081991F /* Assets.xcassets */,
 				3D9CAAE01E3B09B20081991F /* Info.plist */,
 			);
@@ -272,7 +269,6 @@
 				3D9CAAD71E3B09B20081991F /* ViewController.swift in Sources */,
 				3D9CAAD51E3B09B20081991F /* AppDelegate.swift in Sources */,
 				3D9CAAE91E3B2F620081991F /* HubbubModel.swift in Sources */,
-				3D6D03BF1E40F3EE00A42174 /* Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

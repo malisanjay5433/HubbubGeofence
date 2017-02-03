@@ -23,9 +23,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
     @IBOutlet var map : GMSMapView!
     @IBOutlet var notificationLabel : UILabel!
     var locationManager  = CLLocationManager()
-    let ENTERED_REGION_MESSAGE = "Welcome,Lets connect each other"
+    let ENTERED_REGION_MESSAGE = "Welcome Hubbub!!!, Stay connected to the people and places around you on Hubbub"
     let ENTERED_REGION_NOTIFICATION_ID = "EnteredRegionNotification"
-    let EXITED_REGION_MESSAGE = "Bye! We hope you had good time with us"
+    let EXITED_REGION_MESSAGE = "Bye!!! Hope you had good time with us"
     let EXITED_REGION_NOTIFICATION_ID = "ExitedRegionNotification"
     var pathOfPolygon =  GMSMutablePath()
     @IBOutlet var lat: UITextField?
@@ -49,7 +49,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         }
         addAnnotaton()
         addingPolyline()
-        addPlogone()
+        addPloygone()
         
     }
     /// titleView for hubbub
@@ -62,7 +62,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
     }
     /// isAvailable func to check latitude and longitude inside or outside
     ///
-    /// - Parameter sender:
+    /// - Parameter sender: UIButton
     @IBAction func isAvalibleinsidePolygone(_ sender: UIButton){
         let latitude = lat?.text
         let longitude = lon?.text
@@ -113,14 +113,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
     func setupMap(){
         for i in places {
         map.settings.myLocationButton = true
-        map.camera = GMSCameraPosition.camera(withLatitude:(i.boundsMaxLongitude!), longitude:(i.boundsMinLatitude!), zoom: 14.0)
-
+        map.camera = GMSCameraPosition.camera(withLatitude:(i.boundsMaxLongitude!), longitude:(i.boundsMinLatitude!), zoom: 15.0)
         map.settings.myLocationButton = true
         let geofenceRegionCenter = CLLocationCoordinate2DMake(i.boundsMaxLongitude!,i.boundsMinLatitude!);
-        
-        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 100, identifier: "Its me bro..");
+        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 500, identifier: "Its me bro..");
         geofenceRegion.notifyOnEntry = true
         geofenceRegion.notifyOnExit = true
+        map.animate(toBearing: 0)
         self.locationManager.startMonitoring(for: geofenceRegion)
         }
     }
@@ -146,40 +145,43 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         marker.title = title
         // marker.snippet = snipet
         marker.isFlat = true
-        marker.icon = UIImage(named: "Marker")
+        marker.icon = UIImage(named: "locationHubbub")
         marker.map = map
         self.map.animate(toLocation: marker.position)
     }
+    
+    /// Add Annotations to GMSMapView
     func addAnnotaton(){
         for i in places{
             setMarkersOnMap(i.lon!, lng: i.lat!, snipet:"")
         }
     }
+    
+    /// Drawing polylines on GMSMapView
     func addingPolyline(){
         let path = GMSMutablePath()
         path.removeAllCoordinates()
         for i in places{
-            print("CLLocationCoordinate2D:\(i.lat,i.lon)")
             path.add(CLLocationCoordinate2D(latitude:i.lon!, longitude:i.lat!))
             let polyline = GMSPolyline(path: path)
             polyline.geodesic = true
             polyline.map = map
-            polyline.strokeColor = .black//UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
+            polyline.strokeColor = UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
             polyline.strokeWidth = 3
             
         }
     }
-    func addPlogone(){
+    /// Drawing polygon on GMSMapView
+    func addPloygone(){
         let path = GMSMutablePath()
         path.removeAllCoordinates()
         for i in places{
-            print("i:\(i.lon,i.lat)")
             path.add(CLLocationCoordinate2D(latitude:i.lon!, longitude:i.lat!))
             let polyline = GMSPolygon(path: path)
             polyline.geodesic = true
             polyline.map = map
-            polyline.strokeColor = .white//UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
-            polyline.strokeWidth = 3
+            polyline.strokeColor = UIColor.black
+            polyline.fillColor = UIColor.init(colorLiteralRed:176/255, green: 143/255, blue:52/255, alpha: 0.6)
         }
     }
     /// didStartmonitoring region
@@ -187,7 +189,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
     ///   - manager: The CLLocationManager object is your entry point to the location service
     ///   - region:A logical area
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("Started Monitoring Region: \(region.identifier)")
         self.notificationLabel.text = "We Started Region Monitoring,"
     }
     
@@ -249,7 +250,7 @@ extension ViewController{
             
         else {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
-            annotationView.image = UIImage(named: "Marker")
+            annotationView.image = UIImage(named: "locationHubbub")
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView.canShowCallout = true
             return annotationView
