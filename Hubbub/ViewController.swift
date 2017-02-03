@@ -21,7 +21,6 @@ struct json_Type {
 class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDelegate,GMSMapViewDelegate{
     //    @IBOutlet var map : MKMapView!
     @IBOutlet var map : GMSMapView!
-    
     @IBOutlet var notificationLabel : UILabel!
     var locationManager  = CLLocationManager()
     let ENTERED_REGION_MESSAGE = "Welcome,Lets connect each other"
@@ -34,6 +33,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
     @IBOutlet var accuracy: UITextField?
     @IBOutlet var check: UIButton?
     let places = HubbubModel.hubbubPlaces(file_path:json_Type.hub3)
+    var p:HubbubModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigation_title()
@@ -49,7 +50,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         addAnnotaton()
         addingPolyline()
         addPlogone()
-
+        
     }
     /// titleView for hubbub
     func navigation_title() {
@@ -59,7 +60,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         imageView.image = image
         navigationItem.titleView = imageView
     }
-    
     /// isAvailable func to check latitude and longitude inside or outside
     ///
     /// - Parameter sender:
@@ -82,6 +82,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         }else {
             alert(title: "Please enter", msg: "Latitude and longitude")
         }
+         lat?.text = ""
+         lon?.text = ""
+        
     }
     /// Generic alert Controller
     ///
@@ -101,49 +104,41 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         textField.resignFirstResponder();
         return true
     }
-    /// Setup User location and geofencing area
-    //    func setUpGeofence() {
-    //        let geofenceRegionCenter = CLLocationCoordinate2DMake((locationManager.location?.coordinate.latitude)!,(locationManager.location?.coordinate.longitude)!);
-    //        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 100, identifier: "Its me bro..");
-    //        geofenceRegion.notifyOnExit = true;
-    //        geofenceRegion.notifyOnEntry = true;
-    //        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-    //        let mapRegion = MKCoordinateRegion(center: geofenceRegionCenter, span: span)
-    //        self.map.setRegion(mapRegion, animated: true)
-    //        let regionCircle = MKCircle(center: geofenceRegionCenter, radius: 500)
-    //        self.map.add(regionCircle)
-    //        self.map.showsUserLocation = true;
-    //        self.locationManager.startMonitoring(for: geofenceRegion)
-    //    }
     //MARK - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.authorizedAlways) {
-            //            self.setUpGeofence()
             setupMap()
         }
     }
     func setupMap(){
+        for i in places {
+        map.settings.myLocationButton = true
+        map.camera = GMSCameraPosition.camera(withLatitude:(i.boundsMaxLongitude!), longitude:(i.boundsMinLatitude!), zoom: 14.0)
+
+        map.settings.myLocationButton = true
+        let geofenceRegionCenter = CLLocationCoordinate2DMake(i.boundsMaxLongitude!,i.boundsMinLatitude!);
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            let loc_coords = CLLocationCoordinate2DMake((locationManager.location?.coordinate.latitude)!,(locationManager.location?.coordinate.longitude)!)
-            drawCircle(loc_coords)
-            map.settings.myLocationButton = true
-            map.camera = GMSCameraPosition.camera(withLatitude:72.81, longitude:18.981, zoom: 15.0)
-            map.settings.myLocationButton = true
-//            setMarkersOnMap((locationManager.location?.coordinate.latitude)!, lng:(locationManager.location?.coordinate.longitude)!, snipet: "Its me")
-            
+        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 100, identifier: "Its me bro..");
+        geofenceRegion.notifyOnEntry = true
+        geofenceRegion.notifyOnExit = true
+        self.locationManager.startMonitoring(for: geofenceRegion)
         }
-        
     }
+    ///A circle on the Earth's surface (spherical cap).
+    ///
+    /// - Parameter position: position CLLocationCoordinate2D which represents latitude and longitude
     func drawCircle(_ position: CLLocationCoordinate2D) {
-        
         let circle = GMSCircle(position: position, radius: 1000)
-        circle.strokeColor = UIColor.blue
+        circle.strokeColor = UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
         circle.fillColor = UIColor(red: 0, green: 0, blue: 0.35, alpha: 0.05)
         circle.map = map
-        
     }
+    /// Set Marker on Google Map
+    ///
+    /// - Parameters:
+    ///   - lat: latitude
+    ///   - lng: longitude
+    ///   - snipet: Any String character
     func setMarkersOnMap(_ lat: Double, lng: Double,snipet: String) {
         let marker = GMSMarker()
         //        var markerView:UIImageView!
@@ -155,10 +150,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         marker.map = map
         self.map.animate(toLocation: marker.position)
     }
-    
     func addAnnotaton(){
         for i in places{
-        setMarkersOnMap(i.lat!, lng: i.lon!, snipet:"")
+            setMarkersOnMap(i.lon!, lng: i.lat!, snipet:"")
         }
     }
     func addingPolyline(){
@@ -170,29 +164,24 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
             let polyline = GMSPolyline(path: path)
             polyline.geodesic = true
             polyline.map = map
-            polyline.strokeColor = .red//UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
+            polyline.strokeColor = .black//UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
             polyline.strokeWidth = 3
             
         }
     }
-    
     func addPlogone(){
         let path = GMSMutablePath()
         path.removeAllCoordinates()
         for i in places{
             print("i:\(i.lon,i.lat)")
-                    path.add(CLLocationCoordinate2D(latitude:i.lon!, longitude:i.lat!))
-                    let polyline = GMSPolygon(path: path)
-                    polyline.geodesic = true
-                    polyline.map = map
-                    polyline.strokeColor = .white//UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
-                    polyline.strokeWidth = 3
-                    
+            path.add(CLLocationCoordinate2D(latitude:i.lon!, longitude:i.lat!))
+            let polyline = GMSPolygon(path: path)
+            polyline.geodesic = true
+            polyline.map = map
+            polyline.strokeColor = .white//UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1)
+            polyline.strokeWidth = 3
+        }
     }
-    }
-    
-    
-    
     /// didStartmonitoring region
     /// - Parameters:
     ///   - manager: The CLLocationManager object is your entry point to the location service
@@ -216,7 +205,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("didUpdateLocations")
     }
-    
     /// Creating local notifications when user inside or outside polygone
     ///
     /// - Parameters:
@@ -236,93 +224,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         center.add(request) { (error) in
         }
     }
-    /// Addding annoatations to mapView
-    //    func addAnnotations() {
-    //        print("Count:\(places.count)")
-    //        for i in places{
-    //            print("Place Coorindates:\(i.coordinate)")
-    //        }
-    //        map?.delegate = self
-    //        map?.addAnnotations(places)
-    //        let overlays = places.map { MKCircle(center: $0.coordinate, radius: 1000) }
-    //        map?.addOverlays(overlays)
-    //    }
-    //    /// adding polylines  to array of latitude and longitude
-    //    func addPolyline() {
-    //        var locations = places.map { $0.coordinate }
-    //        let polyline = MKPolyline(coordinates: &locations, count: locations.count)
-    //        map?.add(polyline)
-    //    }
-    //
-    //    /// Adding Polygon area to array of latitude and longitude
-    //    func addPolygon() {
-    //        var locations = places.map { $0.coordinate }
-    //        let polygon = MKPolygon(coordinates: &locations, count: locations.count)
-    //        map?.add(polygon)
-    //
-    //    }
-    /// Authorised location user info
-    /// Determines whether the user has location services enabled.
-    
-    func requestLocationAccess() {
-        let status = CLLocationManager.authorizationStatus()
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            return
-            
-        case .denied, .restricted:
-            print("location access denied")
-            
-        default:
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-}
-extension ViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
-            
-        else {
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
-            annotationView.image = UIImage(named: "Marker")
-            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            annotationView.canShowCallout = true
-            return annotationView
-        }
-    }
-    
-    ///
-    ///
-    /// - Parameters:
-    ///   - mapView: <#mapView description#>
-    ///   - overlay: <#overlay description#>
-    /// - Returns: <#return value description#>
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        if overlay is MKCircle {
-//            let renderer = MKCircleRenderer(overlay: overlay)
-//            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-//            renderer.strokeColor = UIColor.blue
-//            renderer.lineWidth = 2
-//            return renderer
-//            
-//        } else if overlay is MKPolyline {
-//            let renderer = MKPolylineRenderer(overlay: overlay)
-//            renderer.strokeColor = UIColor.red
-//            renderer.lineWidth = 3
-//            return renderer
-//            
-//        } else if overlay is MKPolygon {
-//            let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-//            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-//            renderer.strokeColor = UIColor.orange
-//            renderer.lineWidth = 2
-//            return renderer
-//        }
-//        
-//        return MKOverlayRenderer()
-//    }
 }
 
 // MARK: - Extensions add new functionality to an existing class.
@@ -340,7 +241,20 @@ extension ViewController{
         self.check?.layer.borderWidth = 2.0
         self.check?.layer.borderColor = UIColor.init(colorLiteralRed:33/255, green: 202/255, blue: 153/255, alpha: 1).cgColor
         self.check?.layer.backgroundColor = UIColor.white.cgColor
-        
     }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+            
+        else {
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "Marker")
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView.canShowCallout = true
+            return annotationView
+        }
+    }
+    
 }
 
