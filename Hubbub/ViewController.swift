@@ -67,11 +67,11 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         let latitude = lat?.text
         let longitude = lon?.text
         if latitude != "" && longitude != "" {
-            //            pathOfPolygon.removeAllCoordinates()
+            // pathOfPolygon.removeAllCoordinates()
             for p in places {
                 pathOfPolygon.add(p.coordinate)
             }
-            if GMSGeometryContainsLocation(CLLocationCoordinate2DMake(Double(latitude!)!, Double(longitude!)!), pathOfPolygon, true) {
+            if GMSGeometryIsLocationOnPathTolerance(CLLocationCoordinate2DMake(Double(latitude!)!, Double(longitude!)!), pathOfPolygon, true,60) {
                 alert(title: "YEAH!!!", msg: "You are inside the polygon")
                 self.createLocalNotification(message: "YEAH!!!...You are inside the polygon", identifier: ENTERED_REGION_NOTIFICATION_ID)
                 locationManager.stopUpdatingLocation()
@@ -82,8 +82,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         }else {
             alert(title: "Please enter", msg: "Latitude and longitude")
         }
-         lat?.text = ""
-         lon?.text = ""
+        //        lat?.text = ""
+        //        lon?.text = ""
         
     }
     /// Generic alert Controller
@@ -226,7 +226,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,UITextFieldDele
         }
     }
 }
-
 // MARK: - Extensions add new functionality to an existing class.
 extension ViewController{
     /// Latitude textfield,Longitude textfield,checkButton adding color property,borderColor,borderWidth
@@ -247,7 +246,6 @@ extension ViewController{
         if annotation is MKUserLocation {
             return nil
         }
-            
         else {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
             annotationView.image = UIImage(named: "locationHubbub")
@@ -257,5 +255,41 @@ extension ViewController{
         }
     }
     
+    /**
+     * @discussion Calculate the distance between two passed in locations in terms of kilometers.
+     * @param source CLLocation represents the source location.
+     * @param destination CLLocation represents the destination location.
+     * @return Double represents the distance in terms of kilometers between two.
+     */
+    func calculateDisatnceBetweenTwoLocations(_ source:CLLocation,destination:CLLocation) -> Double{
+        let distanceMeters = source.distance(from: destination)
+        let distanceKM = distanceMeters / 1000
+        let roundedTwoDigit = distanceKM.roundedTwoDigit
+        return roundedTwoDigit * 10000
+    }
+//    func accuracyCheck(latitude:Double,longitude:Double,accuracy:Double)->Bool{
+//        let slatitude = lat?.text
+//        let slongitude = lon?.text
+//        let dest = CLLocation(latitude:latitude,longitude:longitude)
+//        let source = CLLocation(latitude:Double(slatitude!)!, longitude:Double(slongitude!)!)
+//        let distance = self.calculateDisatnceBetweenTwoLocations(source, destination: dest)
+//        print("distance:\(distance)")
+//        if accuracy == distance {
+//            print("Distance between source and dest:\(distance)")
+//            print("True")
+//            return true
+//        }
+//        print("False")
+//        return false
+//    }
+//    
+}
+extension Double {
+    /**
+     * @discussion round last two digits of the passed Double.
+     */
+    var roundedTwoDigit:Double {
+        return Double(Darwin.round((100*self)/100))
+    }
 }
 
